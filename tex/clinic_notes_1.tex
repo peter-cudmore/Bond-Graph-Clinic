@@ -29,18 +29,45 @@
 \onehalfspace
 %\pagestyle{plain}
 
-\title{Bond Graph Clinic: Part 1}
+\newtheorem{defn}{Definition}
+\newtheorem{exmp}{Example}[defn]
+\newtheorem{thm}{Theorem}
+
+\title{Bond Graph Clinic Notes}
 \author{Peter Cudmore}
 \begin{document}
-	\maketitle
+\maketitle
 
-\section{Introduction: Meta Modelling}
-Words
+\section{Introductory Clinic}
+Our goals for this clinic is to review some physics, to provide some examples of systems that we're interested in modelling and to
+show how Bond Graphs emerge from considering how power distribution networks move energy from one system to another.
 
+\section{Closed Systems}
+We begin by stating one of the core physical laws; that is \emph{``in a closed system, energy is a conserved''}.
+
+This property is a consequence of Noether's theorem (which states that every continuous symmetry of a physical theory corresponds to a conservation law). Here the symmetry is temporal shift, and the law results from the empirical fact that the laws of physics do not change with time. Indeed, energy can be defined as the `canonical conjugate' of time.
+
+In practical terms, energy is the currency of physical systems, and is the quantity that is used to change the system state, and what is spent when work is performed. 
+
+Suppose that we have a closed physical system and we are interested in what the spatio-temporal dynamics of the energy happens to be.
+As the internal energy is neither created, destroyed, nor moved in or out of the systems boundary, the only things that can happen to the energy is that it moves around inside the systems boundaries, or stays where it is.
+
+Here, we have the beginnings of modularity. It is clear that any closed system can be decomposed into distinct open subsystems across which the energy is distributed, and the total energy is simply the sum of energy in each subsystem.
+
+\subsection{Example: Ideal Celestial Mechanics}
+
+\subsection{Example: Perfect Hydro-mechanical cycle}
+
+\subsection{Counter-example: RLC circuits}
+
+\subsection{Counter-example: Biochemical Reation}
+
+\section{Open Systems}
+Almost all systems of practical interest are open, in the sense that we assume there is dissipation, and hence an (practically) irreversible loss of energy to the environment as heat. 
 
 
 \begin{thebibliography}{2}
-\bibitem{payter2000 }http://www.me.utexas.edu/\~longoria/paynter/hmp/Bondgraphs.html
+\bibitem{payter2000}http://www.me.utexas.edu/\~longoria/paynter/hmp/Bondgraphs.html
 \bibitem{baez} http://math.ucr.edu/home/baez/week289.html
 \end{thebibliography}
 	

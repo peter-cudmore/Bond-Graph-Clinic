@@ -54,17 +54,40 @@ As the internal energy is neither created, destroyed, nor moved in or out of the
 
 Here, we have the beginnings of modularity. It is clear that any closed system can be decomposed into distinct open subsystems across which the energy is distributed, and the total energy is simply the sum of energy in each subsystem.
 
-\subsection{Example: Ideal Celestial Mechanics}
+\subsection{Example: n-body problem}
+Consider the n-body problem with objects with masses $m_i$.
+The kinetic energy for the $i$th object depends upon the conjugate momentum $p_i$; 
+\[
+E_i = \frac{p_i^2}{2m_i}
+\]
+We can think of each $E_i$ as a distinct subsystem that stores energy in the motion of the $i$th object.
+We also have $n(n-1)/2$ potential fields, where the stored energy depends upon the relative displacement $q_i, q_j$ of the objects
+\[
+V_{ij} = -\frac{m_im_j}{|q_i - q_j|}.
+\]
+The total energy $H$ is given by the \emph{Hamiltonian}
+\[
+H =  \sum_i\frac{p_i^2}{2m_i}  - \sum_{i<j}\frac{m_im_j}{|q_i - q_j|}.
+\]
+As the system is closed, $\D{H}{t} = 0$, and hence $H(q,p) = E_0$ so that the trajectories of $q,p$ lie on the level sets of $H$.
+This a the text-book example of a Hamiltonian System which have shown to be insanely powerful tools in theoretical and mathematical physics.
+Energy is transferred between the subsystems via Hamiltons Equations,
+\[
+\D{p_i}{t} = -\P{H}{q_i},
+\qquad \D{q_i}{t} = \P{H}{p_i}.
+\]
+We shall also recall that the rate of change of momentum is a \emph{force} (i.e. $F = \dot{p}$), and that the rate of change of a position is a \emph{velocity} (ie $v = \dot{q}$).
+\subsection{Example: Parallel RLC circuit + environment}
+Consider a trivial passive electrical circuit; a capacitor, an inductor and a resistor.
+Capacitors store energy in the form of electron charges accumulated on a plate.  
+Inductors store energy in a magnetic field.
+Resistors transfer power from the electrical domain to the thermal domain.
+The thermal domain accumulates the energy dumped in via the resistor.
 
-\subsection{Example: Perfect Hydro-mechanical cycle}
-
-\subsection{Counter-example: RLC circuits}
-
-\subsection{Counter-example: Biochemical Reation}
-
+If we throw away the thermal domain (as we usually do), then the system is no longer closed and we must consider dissipation  and energy sources for nontrivial dynamics.
 \section{Open Systems}
 Almost all systems of practical interest are open, in the sense that we assume there is dissipation, and hence an (practically) irreversible loss of energy to the environment as heat. 
-
+\subsection{Example:}
 
 \begin{thebibliography}{2}
 \bibitem{payter2000}http://www.me.utexas.edu/\~longoria/paynter/hmp/Bondgraphs.html

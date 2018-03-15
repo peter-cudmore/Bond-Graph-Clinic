@@ -331,7 +331,7 @@ Which, if we define the integration operator $\mathcal{I}x = \int_0^tx(t)\df{t}$
 \begin{figure}
 	\includegraphics{images/oneport-C.pdf}
 \end{figure}
-Similarly for potential, the stored energy depends only on position, $\P{H}{q} = 0$, so we define $f\df{t} = \df{q}$.
+Similarly for potential, the stored energy depends only on position, $\P{H}{p} = 0$, so we define $f\df{t} = \df{q}$.
 \[
 \P{H}{q} \df{q} + \P{H}{p}\df{p} = ef\df{t} \implies  \left(\P{H}{q} - e\right)\df{q}= 0
 \]
@@ -351,7 +351,7 @@ Storage of potential energy has more variety. In the linear case (represented by
 \[
 H(q,p) =\frac{1}{2C} q^2 
 \]
-which is the power stored in a $C$-farad capacitor, the elastic energy stored in a spring displace by $q$ from equilibrium, etc.
+which is the power stored in a $C$-farad capacitor, the elastic energy stored in a spring displaced by $q$ from equilibrium, etc.
 \[
 \Phi_C = \P{H}{q} - e= \frac{1}{C}q - e \qquad  \implies \qquad Ce - \int f \df{t} = 0
 \]}
@@ -362,8 +362,8 @@ Hence we have a constitutive relation:
 \]
 Which, if we define the differentiation operator $Dx = \D{}{t} x(t) $, then we have
 \[
-\Phi_C = \left(C, -D\right) \left(\begin{matrix} e\\f\end{matrix}\right) \qquad \overset{\mathcal{C}}{\implies}\qquad
-\hat{\Phi}_C(s) = \left(C, -D\right) \left(\begin{matrix} \hat{e}\\\hat{f}\end{matrix}\right) 
+\Phi_C = \left(C, -D\right) \left(\begin{matrix} e\\f\end{matrix}\right) \qquad \overset{\mathcal{L}}{\implies}\qquad
+\hat{\Phi}_C(s) = \left(C, -s\right) \left(\begin{matrix} \hat{e}\\\hat{f}\end{matrix}\right) 
 \] 
 up to a constant.
 }
@@ -405,7 +405,7 @@ and similarly for the flow source Sf
 \Phi_\text{Sf} = f - u.
 \]
 \end{frame}
-\section{Table of Constitutive Relations}
+\section{An example...}
 \begin{frame}
 \frametitle{Table of Constitutive Relations}
 \begin{small}
@@ -437,10 +437,10 @@ and similarly for the flow source Sf
 	\hline
 	&\\
 	0 &$	\Phi_\text{0} = \left(\begin{matrix}
-	f_1 -f_2\\
+	e_1 -e_2\\
 	\ldots\\
-	f_{j-1} - f_j\\
-	e_1 + e_2 + \ldots + e_j 
+	e_{j-1} - e_j\\
+	f_1 + f_2 + \ldots + f_j 
 	\end{matrix}\right)$\\
 	&
 	\\
@@ -454,5 +454,44 @@ and similarly for the flow source Sf
 \end{minipage}
 \end{small}
 \end{frame}
+\begin{frame}
+\frametitle{RLC Example}
+\begin{small}
+\begin{minipage}{0.4\textwidth}
+\begin{figure}
+	\includegraphics{images/rlc.pdf}
+	\caption{RLC Bond Graph}
+\end{figure}
+\end{minipage}
+\begin{minipage}{0.55\textwidth}
+\begin{eqnarray}
+\Phi_R &=& e_R - Rf_r\\
+\Phi_C &=& Ce_C - \int f_C\df{t}\\
+\Phi_L &=& \int e_L \df{t} - Lf_L\\
+\Phi_1 &=& \left(\begin{matrix}
+f_\text{in} - (-f_R)\\
+f_\text{in} - (-f_C)\\
+f_\text{in} - (-f_L)\\
+e_\text{in} + e_R + e_C + e_L
+\end{matrix}\right)
+\end{eqnarray}
+\end{minipage}
 
+
+\vspace{10pt}
+
+\only<1>{Our goal is to find $\Phi_\text{RLC}(e_\text{in},f_\text{in}) = 0$; that is the equivalent relation for the entire network.}
+\only<2>{Observing the first three rows of $\Phi_1$, in combination with $\Phi_R,\Phi_C,\Phi_L$ respectively; we have
+	\[
+	e_R = -Rf_\text{in},\qquad e_c = -\frac{1}{C}\int f_\text{in}\df{t}, \qquad e_L = -\frac{1}{L}\D{f_\text{in}}{t}
+	\]
+}
+\only<3>{
+Substituting into the fourth row of $\Phi_1$ gives our result:
+\[
+\Phi_\text{RLC} = e_\text{in} - \left(\frac{1}{C}\int f_\text{in} \df{t} + Rf_\text{in} + \frac{1}{L}\D{f_\text{in}}{t}\right) = 0
+\]
+}
+\end{small}
+\end{frame}
 \end{document}

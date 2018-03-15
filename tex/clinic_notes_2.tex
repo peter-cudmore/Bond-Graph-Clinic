@@ -50,10 +50,8 @@ Last week we showed Bond Graphs capture:
 \begin{itemize}
 	\item Energy transferred between $B,C,D$ without loss via bonds.
 	\item Power transfer represented by conjugate variables $P_i=e_if_i$.
-	\item Subsystem dynamics in constitutive relations; $\Phi_B(p,q,e,f) = 0$ for example.
+	\item Subsystem dynamics through constitutive relations; $\Phi_B(p,q,e,f) = 0$ for example.
 \end{itemize}
-\pause
-\emph{Today we focus on $\Phi$}
 \end{frame}
 \section{Junction Structures}
 \subsection{Two-Port Components}
@@ -303,6 +301,7 @@ Hence we have a constitutive relation
 \begin{figure}
 	\includegraphics{images/oneport-L.pdf}
 \end{figure}
+\only<1>{
 In the case of linear kinetic storage; we have a Hamiltonian
 \[
 H(q,p) = \frac{1}{2L}p^2,
@@ -312,8 +311,19 @@ which is the energy stored in a $L$-henry inductor; in the linear motion of an $
 \vspace{10pt}
 This gives rise to the familiar constitutive relation:
 \[
-\Phi_L = \P{H}{p} - f = \frac{1}{L}p - f =0 \implies Lf -  \int e \df{t} = 0.
+\Phi_L = \P{H}{p} - f = \frac{1}{L}p - f\qquad \implies \qquad Lf -  \int e \df{t} = 0.
+\]}
+\only<2>{
+This gives rise to the familiar constitutive relation:
+\[
+\Phi_L = \frac{1}{L}p - f
 \]
+Which, if we define the integration operator $\mathcal{I}x = \int_0^tx(t)\df{t}$, then we have
+\[
+\Phi_L = \left(\mathcal{I}, -L\right) \left(\begin{matrix} e\\f\end{matrix}\right) \qquad \overset{\mathcal{L}}{\implies}\qquad
+\hat{\Phi}_L(s) = \left(s^{-1}, -L\right) \left(\begin{matrix} \hat{e}\\\hat{f}\end{matrix}\right) 
+\] 
+}
 \end{frame}
 
 \begin{frame}
@@ -325,7 +335,7 @@ Similarly for potential, the stored energy depends only on position, $\P{H}{q} =
 \[
 \P{H}{q} \df{q} + \P{H}{p}\df{p} = ef\df{t} \implies  \left(\P{H}{q} - e\right)\df{q}= 0
 \]
-Hence we have a constitutive relation
+Hence we have a constitutive relation:
 \[
 \Phi_C = \P{H}{q} - e= 0, \qquad  \text{where}\qquad \dot{q} = f.
 \]
@@ -336,14 +346,27 @@ Hence we have a constitutive relation
 \begin{figure}
 	\includegraphics{images/oneport-C.pdf}
 \end{figure}
+\only<1>{
 Storage of potential energy has more variety. In the linear case (represented by the $C$ node above) we have
 \[
 H(q,p) =\frac{1}{2C} q^2 
 \]
 which is the power stored in a $C$-farad capacitor, the elastic energy stored in a spring displace by $q$ from equilibrium, etc.
 \[
-\Phi_C = \P{H}{q} - e= 0\implies  \Phi_C = \frac{1}{C}q - e =0  \implies Ce - \int f \df{t} = 0
+\Phi_C = \P{H}{q} - e= \frac{1}{C}q - e \qquad  \implies \qquad Ce - \int f \df{t} = 0
+\]}
+\only<2>{
+Hence we have a constitutive relation:
+\[
+\Phi_C = \frac{1}{C}q - e
 \]
+Which, if we define the differentiation operator $Dx = \D{}{t} x(t) $, then we have
+\[
+\Phi_C = \left(C, -D\right) \left(\begin{matrix} e\\f\end{matrix}\right) \qquad \overset{\mathcal{C}}{\implies}\qquad
+\hat{\Phi}_C(s) = \left(C, -D\right) \left(\begin{matrix} \hat{e}\\\hat{f}\end{matrix}\right) 
+\] 
+up to a constant.
+}
 \end{frame}
 
 \subsection{Dissipative and Sources}
@@ -387,7 +410,6 @@ and similarly for the flow source Sf
 \frametitle{Table of Constitutive Relations}
 \begin{small}
 \begin{minipage}[c][\textheight][t]{0.4\textwidth}
-
 \vspace{0.75cm}
 \begin{tabular}{| l | c |}
 	Node & Constitutive Relation\\
@@ -409,7 +431,7 @@ and similarly for the flow source Sf
 \end{tabular}
 \end{minipage}\hfill
 \begin{minipage}[c][\textheight][t]{0.45\textwidth}
-	\vspace{1cm}
+	\vspace{0.75cm}
 \begin{tabular}{| l | c |}
 	Node & Constitutive Relation\\
 	\hline
@@ -431,11 +453,6 @@ and similarly for the flow source Sf
 \end{tabular}
 \end{minipage}
 \end{small}
-
 \end{frame}
 
-
-
-\begin{thebibliography}{1}
- \end{thebibliography}
 \end{document}

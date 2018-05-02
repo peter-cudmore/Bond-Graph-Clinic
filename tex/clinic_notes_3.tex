@@ -293,124 +293,173 @@ Clearly, the flow of $A$ and the flow of $B$ into this reaction are equal.
 \vfill
 
 Hence, we \emph{should} be able to represent the $AB$ complex as a equal flow junction, and allow the reaction to drive what that flow is.
-
-\begin{center}
-\textbf{Just using the usual common flow 1 junction wont work!}\\
-\vspace{10pt}
-\emph{Question: Why?}
-\end{center}
 \end{frame}
 
 \begin{frame}
-\frametitle{Naive example: $A+B\rightleftharpoons B$}
+\frametitle{Revisiting the '1' junction}
 \begin{figure}
-	\includegraphics[scale=0.8]{images/bondgraph_abc_naive}
+\includegraphics{images/nport-1}
 \end{figure}
+\only<1>{
+In clinic 2 we introduced the '1' junction and argued that it's constitutive relation is given by
+\[
+\Phi_\text{1} = \left(\begin{matrix}
+f_1 -f_2\\
+\ldots\\
+f_{j-1} - f_j\\
+e_1 + e_2 + \ldots + e_j 
+\end{matrix}\right) = 0
+\]}
+\only<2-3>{
+Alternatively
+\[
+f_i =f_j \qquad \forall i,j
+\]
+and \[
+\sum_i e_i = 0
+\]}
+\only<3>{This deviates from the literature and may causes problems (thanks to Peter Gawthrop for pointing this out.).}
+\end{frame}
+\begin{frame}
+\frametitle{Revisiting the '1' junction}
+\begin{figure}
+	\includegraphics{images/nport-1a}
+\end{figure}
+\only<1>{
+To fix this, we must instead think of the 1 junction as having two ends (call the sets $\iota$ and $\omega$) so that all flows at $\iota$ are equal, all flows at $\omega$ are equal, and any flow at $\omega$ is in the opposite direction to any other at $\iota$.
+\vfill
+We can then define:
+\[
+\sigma_k = \begin{cases}
+1 &\text{if}\quad  k \in \iota,\\
+-1 &\text{if}\quad k \in \omega.
+\end{cases}
+\]}
+\only<2>{
+The redefined constitutive relation then becomes 
+\[
+\Phi_\text{1} = \left(\begin{matrix}
+\sigma_1f_1 -\sigma_2f_2\\
+\ldots\\
+\sigma_{j-1}f_{j-1} - \sigma_{j}f_j\\
+\sum_{k=1}^j \sigma_ke_k
+\end{matrix}\right) = 0,
+\qquad 
+\sigma_k = \begin{cases}
+1 &\text{if}\quad  k \in \iota,\\
+-1 &\text{if}\quad k \in \omega.
+\end{cases}
+\]}
+\only<3>{
+This is equivalent to the following bond graph
+\begin{figure}
+	\includegraphics[scale=0.5]{images/nport-1b}
+\end{figure}
+\[
+\text{Where} \qquad \Phi_\text{1*} = \left(\begin{matrix}
+f_1 -f_2\\
+\ldots\\
+f_{j-1} - f_j\\
+e_1 + e_2 + \ldots + e_j 
+\end{matrix}\right)\qquad \text{as before.}
+\]}
+\only<4>{
+	The relations can be simplified by associating the direction of a connecting bond with $\sigma$, ie; bond pointing out implies $\sigma = -1$.
+	\[
+	\Phi_\text{1} = \left(\begin{matrix}
+	\sigma_1f_1 -\sigma_2f_2\\
+	\ldots\\
+	\sigma_{j-1}f_{j-1} - \sigma_{j}f_j\\
+	\sum_{k=1}^j \sigma_ke_k
+	\end{matrix}\right) = 0,
+	\qquad 
+	\sigma_k = \begin{cases}
+	1 &\text{if connecting bond points in},\\
+	-1 &\text{if connecting bond points out}.
+	\end{cases}
+	\]
+This is standard practice, but this means that the $1$ component needs to know what it's connected to.
+}
+\end{frame}
+
+\subsection{Reaction Bond Graphs}
+\begin{frame}
+
+\frametitle{$A+B\rightleftharpoons C$}
 {\scriptsize
-\begin{minipage}{0.475\linewidth}
-\begin{align}
-\Phi_{Ce:A} &= e_1 - \ln k_A(q_1),\\
-\Phi_{Ce:B} &= e_2 - \ln k_B(q_2),\\
-\Phi_{Ce:B} &= e_2 - \ln k_C(q_3)
-\end{align}
-\end{minipage}
-\begin{minipage}{0.475\linewidth}
-	\begin{align}
-\Phi_{Re} &= \left(
-\begin{matrix}
-	\kappa\left[\e^{e_3} - \e^{e_4}\right] - f_3\\
-	f_3 + (- f_4)
-\end{matrix}
-\right),\\
-\Phi_1(\mathbf{e},\mathbf{f})&=\left(
-\begin{matrix}
-	e_1 + e_2 + e_3\\
-	f_1 - (-f_3)\\
-	f_2- (-f_3)\end{matrix}\right),
-\end{align}
-\end{minipage}	
-
-From the first equation of (8) we have
-\[
-e_3 = -(e_1 + e_2) \implies f_3 = \kappa \left(\e^{ - e_1 - e_2} - \e^{e_4}\right) = \kappa\left(\frac{1}{k_A k_Bq_1 q_2} + k_Cq_3\right)
-\]
-Which is clearly wrong as we should not be able to get inverse powers!}
-\end{frame}
-\begin{frame}
-\frametitle{What when wrong}
-We're actually coupling two slightly different thermodynamic domains;
-\begin{itemize}
-	\item \emph{chemical potential energy} (that is, the stored in a heterogeneous solution)
-	\item \emph{chemical reaction affinity} (the energy stored in a complex).
-\end{itemize}
-
-These overlap only when the species IS the complex; hence why it works for the reaction $A\rightleftharpoons B$.
-\vspace{10pt}
-
-What we need is a mapping between species space and complex space.
-
+	\begin{figure}
+		\includegraphics[scale=0.5]{images/bondgraph_abc_naive}
+		\caption{Bond Graph of $A+B \rightleftharpoons C$}
+	\end{figure}
+	\begin{minipage}{0.475\textwidth}
+		\begin{align}
+		\Phi_{Ce:A} &= e_1 - \ln k_A(q_1),\\
+		\Phi_{Ce:B} &= e_2 - \ln k_B(q_2),\\
+		\Phi_{Ce:B} &= e_2 - \ln k_C(q_3)
+		\end{align}
+	\end{minipage}
+	\begin{minipage}{0.475\textwidth}
+		\begin{align}\Phi_{Re} &= \left(
+		\begin{matrix}
+		\kappa\left[\e^{e_3} - \e^{e_4}\right] - f_3\\
+		f_3 + (- f_4)
+		\end{matrix}
+		\right),\\
+		\Phi_{1} &= \left(\begin{matrix}
+		e_1 +e_1 - e_3 \\
+		f_1 - f_3\\
+		f_2 - f_3\\
+		\end{matrix}\right)
+		\end{align}
+	\end{minipage}
+	
+	\vfill
+	Clearly
+	\[
+	e_3 = e_1 + e_2 \implies \exp(e_3) = \exp(\ln k_A q_1 + \ln k_Bq_2) = k_Ak_B q_1q_2.
+	\]
+	Since $f_4 = \dot{q_4}$,  it follows from (12) that
+	\[
+	\dot{q_4} =  \kappa k_Ak_B q_1q_2 - \kappa k_C q_4 = k_+q_1q_2 - k_-q_4.
+	\]
+	From (12) and (13) we have $\dot{q_4} = f_4 =f_3= f_2 = f_1$.\\
+	Combining this with $f_1 = -\dot{q_1} $ and $f_2 = -\dot{q_2}$ completes the picture.
+}
 \end{frame}
 
+
 \begin{frame}
-\frametitle{Stoichiometry}
+\frametitle{Stoichiometric Coefficients}
+Transformers can be used to introduce stoichiometry (see \cite{Oster:1973aa} and \cite{Gawthrop:2014aa})
 \begin{figure}
-\includegraphics{images/stoic_oster}
+	\includegraphics[scale=0.5]{images/stoic_oster}
 \end{figure}
-
-Oster \emph{et. al.}~\cite{Oster:1973aa} represented reaction stoichiometry using the above bond graph.
-\\
-Here $n1$ and $n2$ are the number of molecules of species $1$ and $2$ consumed by the reaction. 
-\vspace{10pt}
-
-Recall that 
-$\Phi_{TF:\rho}(e_j, f_j, e_k,f_k) = 0 \implies e_k =  \rho e_j,\qquad f_k = \rho^{-1}f_j$ and 
-hence
+Here $n1$ and $n2$ represent the stoichiometric coefficient, and the $\circ$ on identifies the transformer primary winding.\\
+Hence, the reaction forward affinity is given by
 \[
-e_r = -e_o, \qquad e_1 = n_1\mu_1,\qquad e_2 = n_2\mu_2.
+e_o = n_1\mu_1 + n_2 \mu_2
 \]
-
-Since $e_1 +e_2 +e_o  =0$ it follows that the reaction affinity is
+and the flow rates 
 \[
-A^f =e_r = -e_o = e_1 + e_2 = n_1\mu_1 + n_2 \mu_2
+\nu_1 = n_1f_0,\qquad \nu_2 = n_2f_0
 \]
+are in terms of the reaction flow $f_0$ as expected.
 \end{frame}
-\begin{frame}
-\frametitle{Gawthrop's Reduction}
-\begin{figure}
-\includegraphics[scale=0.5]{images/stoic_oster_A}
-\end{figure}
+\begin{frame}{Complexes}
 \begin{center}
-Gawthrop~\cite{Gawthrop:2014aa} replace the shaded box with the\\ \emph{biochemical 1 junction} defined by 
-\end{center}
-
-\begin{figure}
-	\includegraphics[scale=0.5]{images/stoic_gaw}
-\end{figure}
-\[
-\Phi_{1} = \left(\begin{matrix}
-e_o - (e_1 +e_2)\\
-f_o -f_1\\
-f_o -f_2  
-\end{matrix}\right) = 0\implies f_r = -f_1 = -f_2, \quad e_r= e_1 + e_2
-\]
-\end{frame}
-\begin{frame}
-\frametitle{An alternative}
-An alternative would be to replace
-\begin{figure}
-	\includegraphics[scale=0.5]{images/stoic_oster_Y}
-\end{figure}
-\begin{center}
-with
+	\begin{figure}
+		\includegraphics[scale=0.5]{images/stoic_oster_Y}
+	\end{figure}
+can be replaced by
 \end{center}
 \begin{figure}
 \includegraphics[scale=0.5]{images/stoic_Y}
 \end{figure}
 Where $\mathbf{n}$ is the forward or reverse (truncated) stoichiometric vector which in this case $\mathbf{n} = (n_1,n_2)$.
+Here $[c]$ identifies which port is associated with the complex.
 \end{frame}
-\subsection{Through Junction}
 \begin{frame}
-\frametitle{Through Junction}
+\frametitle{Complexes II}
 \begin{minipage}{0.58\textwidth}
 \begin{figure}
 	\includegraphics{images/stoic_Y}
@@ -428,7 +477,6 @@ f_r + \frac{f_1}{n_1}\\
 \end{minipage}
 
 \vspace{20pt}
-\only<1>{
 
 $\text{Y}$ is power conserving. Multiplying the top line by $f_r$ gives 
 \[
@@ -439,59 +487,7 @@ Since $n_if_r = -f_i$, the result follows from
 0 = e_r f_r - \sum e_i (n_if_r) = e_rf_r + \sum e_if_i.
 \]
 This is no surprise as $\text{Y}$ is built from conserving components.
-}
-\only<2>{\begin{center}
-The through junction	$\text{Y}$ 
-	\begin{itemize}
-		\item is power conserving,
-		\item is unambiguous,
-		\item is symbolically consistent,
-		\item maps cleanly on existing C.R.N. theory.
-	\end{itemize}
-\end{center}
-}
-\end{frame}
-\begin{frame}
-\frametitle{$A+B\rightleftharpoons C$: redux.}
-{\scriptsize
-\begin{figure}
-	\includegraphics[scale=0.5]{images/bondgraph_abc_final}
-	\caption{Bond Graph of $A+B \rightleftharpoons C$}
-\end{figure}
-\begin{minipage}{0.475\textwidth}
-\begin{align}
-\Phi_{Ce:A} &= e_1 - \ln k_A(q_1),\\
-\Phi_{Ce:B} &= e_2 - \ln k_B(q_2),\\
-\Phi_{Ce:B} &= e_2 - \ln k_C(q_3)
-\end{align}
-\end{minipage}
-\begin{minipage}{0.475\textwidth}
-\begin{align}\Phi_{Re} &= \left(
-\begin{matrix}
-\kappa\left[\e^{e_3} - \e^{e_4}\right] - f_3\\
-f_3 + (- f_4)
-\end{matrix}
-\right),\\
-\Phi_{Y} &= \left(\begin{matrix}
-e_3 - e_1 - e_2 \\
-(-f_3) + f_1\\
-(-f_3) + f_2\\
-\end{matrix}\right)
-\end{align}
-\end{minipage}
 
-\vfill
-Clearly
-\[
-e_3 = e_1 + e_2 \implies \exp(e_3) = \exp(\ln k_A q_1 + \ln k_Bq_2) = k_Ak_B q_1q_2.
-\]
-Since $f_4 = \dot{q_4}$,  it follows from (12) that
-\[
-\dot{q_4} =  \kappa k_Ak_B q_1q_2 - \kappa k_C q_4 = k_+q_1q_2 - k_-q_4.
-\]
-From (12) and (13) we have $\dot{q_4} = f_4 =f_3= f_2 = f_1$.\\
-Combining this with $f_1 = -\dot{q_1} $ and $f_2 = -\dot{q_2}$ completes the picture.
-}
 \end{frame}
 \begin{frame}
 \frametitle{$A+B\rightleftharpoons C$: final form!}
@@ -527,7 +523,7 @@ The $\text{Re}$ component models how the complex $A+B$ transmutes into $C$. The 
 \frametitle{Try for yourself}
 Try drawing bond graphs of these common reactions:
 \begin{itemize}
-	\item $A+B \rightleftharpoons D+C$
+	\item $A+2B \rightleftharpoons 2D+C$
 	\item $A+B \rightleftharpoons B+C$
 	\item $E + S \rightleftharpoons ES \rightleftharpoons E+P$
 \end{itemize}
@@ -555,8 +551,6 @@ Try drawing bond graphs of these common reactions:
 	\includegraphics[width=0.75\linewidth]{images/bondgraph_abc}
 	\end{figure}
 \end{minipage}
-	
-
 }
 \end{frame}
 \begin{frame}

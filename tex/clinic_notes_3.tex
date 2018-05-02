@@ -318,7 +318,8 @@ f_i =f_j \qquad \forall i,j
 and \[
 \sum_i e_i = 0
 \]}
-\only<3>{This deviates from the literature and may causes problems (thanks to Peter Gawthrop for pointing this out.).}
+\only<3>{This deviates from the literature and may cause problems\\
+(thanks to Peter Gawthrop for pointing this out.).}
 \end{frame}
 \begin{frame}
 \frametitle{Revisiting the '1' junction}
@@ -434,7 +435,7 @@ Transformers can be used to introduce stoichiometry (see \cite{Oster:1973aa} and
 \begin{figure}
 	\includegraphics[scale=0.5]{images/stoic_oster}
 \end{figure}
-Here $n1$ and $n2$ represent the stoichiometric coefficient, and the $\circ$ on identifies the transformer primary winding.\\
+Here $n_1$ and $n_2$ represent the stoichiometric coefficients, and the $\circ$ on identifies the transformer primary winding.\\
 Hence, the reaction forward affinity is given by
 \[
 e_o = n_1\mu_1 + n_2 \mu_2
@@ -448,15 +449,16 @@ are in terms of the reaction flow $f_0$ as expected.
 \begin{frame}{Complexes}
 \begin{center}
 	\begin{figure}
-		\includegraphics[scale=0.5]{images/stoic_oster_Y}
+		\includegraphics[scale=0.6]{images/stoic_oster_Y}
 	\end{figure}
 can be replaced by
 \end{center}
 \begin{figure}
-\includegraphics[scale=0.5]{images/stoic_Y}
+\includegraphics[scale=0.6]{images/stoic_Y}
 \end{figure}
-Where $\mathbf{n}$ is the forward or reverse (truncated) stoichiometric vector which in this case $\mathbf{n} = (n_1,n_2)$.
-Here $[c]$ identifies which port is associated with the complex.
+\only<1>{Here $[c]$ identifies the port associated with the complex. The ports $[n_1]$ and $[n_2]$ capture the stoichiometric coefficients.}
+\only<2>{
+Instead of defining a port $[c]$, we could require the `complex' port always be pointing `out'; and the rest inwards. We would however still need some way to specify $n_1$ and $n_2$}
 \end{frame}
 \begin{frame}
 \frametitle{Complexes II}
@@ -509,10 +511,10 @@ Also, note that $\text{Y:C}$ is the identity (\emph{prove it!}) and may be omitt
 The $\text{Ce}$ is a one port component representing a store of a particular chemical species and has a constitutive relation that captures the usual definition of \emph{chemical potential energy}.
 }
 \only<2>{
-The zero junctions allow species A B and C to be share across reactions other than the one modelled in this graph.
+The zero junctions allow species A B and C to be shared across reactions other than the one modelled in this graph.
 }
 \only<3>{
-The $\text{Y}$ component is a power conserving through junction, which captures the forward (in the case of $\text{Y:AB}$) and reverse stoichiometry of this reaction.
+The $\text{Y}$ component is a power conserving flow junction, which captures the forward (in the case of $\text{Y:AB}$) and reverse stoichiometry of this reaction.
 }
 \only<4>{
 The $\text{Re}$ component models how the complex $A+B$ transmutes into $C$. The reaction proceeds according to the \emph{Marcelin-de Donder} formula.
@@ -550,8 +552,20 @@ Try drawing bond graphs of these common reactions:
 	\begin{figure}
 	\includegraphics[width=0.75\linewidth]{images/bondgraph_abc}
 	\end{figure}
-\end{minipage}
-}
+\end{minipage}}
+\end{frame}
+\begin{frame}
+\frametitle{Points For Future Discussion}
+\begin{itemize}
+	\item Bond graphic PDEs.
+	\item Port centric vs bond centric modelling.
+	\item Notation conventions for wider adoption.
+	\item Parameters as random variables.
+	\item Stochastic bond graphs: Johnson–Nyquist noise and probabilistic reactions.
+	\item Bond graph software.
+	\item Applications in cardiac physiology, bionics, synthetic biology (particularly metabolic engineering) and neuroscience.
+\end{itemize}
+Please suggest more!
 \end{frame}
 \begin{frame}
 \frametitle{References}

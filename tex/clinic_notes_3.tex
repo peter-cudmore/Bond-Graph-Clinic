@@ -396,7 +396,7 @@ This is standard practice, but this means that the $1$ component needs to know w
 		\begin{align}
 		\Phi_{Ce:A} &= e_1 - \ln k_A(q_1),\\
 		\Phi_{Ce:B} &= e_2 - \ln k_B(q_2),\\
-		\Phi_{Ce:B} &= e_2 - \ln k_C(q_3)
+		\Phi_{Ce:C} &= e_4 - \ln k_C(q_4)
 		\end{align}
 	\end{minipage}
 	\begin{minipage}{0.475\textwidth}
@@ -454,7 +454,10 @@ are in terms of the reaction flow $f_0$ as expected.
 can be replaced by
 \end{center}
 \begin{figure}
-\includegraphics[scale=0.6]{images/stoic_Y}
+\only<1>{
+\includegraphics[scale=0.6]{images/stoic_Ya}}
+\only<2>{
+	\includegraphics[scale=0.6]{images/stoic_Ya}}
 \end{figure}
 \only<1>{Here $[c]$ identifies the port associated with the complex. The ports $[n_1]$ and $[n_2]$ capture the stoichiometric coefficients.}
 \only<2>{
@@ -464,7 +467,7 @@ Instead of defining a port $[c]$, we could require the `complex' port always be 
 \frametitle{Complexes II}
 \begin{minipage}{0.58\textwidth}
 \begin{figure}
-	\includegraphics{images/stoic_Y}
+	\includegraphics{images/stoic_Ya}
 \end{figure}
 \end{minipage}
 \begin{minipage}{0.38\textwidth}
@@ -558,7 +561,7 @@ Try drawing bond graphs of these common reactions:
 \frametitle{Points For Future Discussion}
 \begin{itemize}
 	\item Bond graphic PDEs.
-	\item Port centric vs bond centric modelling.
+	\item Component/Port centric vs bond centric modelling.
 	\item Notation conventions for wider adoption.
 	\item Parameters as random variables.
 	\item Stochastic bond graphs: Johnson–Nyquist noise and probabilistic reactions.

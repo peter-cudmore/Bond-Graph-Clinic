@@ -1,0 +1,109 @@
+\documentclass[11pt,reqno]{beamer}
+\usepackage[utf8x]{inputenc}
+\usetheme{Dresden}
+\usecolortheme{beaver}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+
+\setbeamertemplate{navigation symbols}{} 
+\title{BGT software tutorial 0}
+\subtitle{Installing the Jupyter stack}
+\author{Peter Cudmore}
+
+\institute{Systems Biology Lab, The University of Melbourne}
+
+\newcommand{\D}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}}
+\newcommand{\e}{\mathrm{e}}
+\newcommand{\I}{\mathrm{i}}
+\renewcommand{\mod}[1]{\left|#1\right|}
+\newcommand{\DD}[2]{\frac{\mathrm{d}^2 #1}{\mathrm{d} #2^2}}
+\newcommand{\bigO}[1]{\text{O}\left(#1\right)}
+\renewcommand{\P}[2]{\frac{\partial #1}{\partial #2}}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\EX}{\mathbb{E}}
+\newcommand{\df}[1]{\mspace{2mu}  \mathrm{d}#1}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complex}{\mathbb{C}}
+\newcommand{\conj}[1]{\overline{#1}}
+
+\begin{document}
+	\hypersetup{urlcolor=blue, linkcolor=blue}
+	\begin{frame}
+	\titlepage
+	\addtocounter{framenumber}{-1} 
+\end{frame}
+\begin{frame}
+\tableofcontents[hideallsubsections]
+\end{frame}
+\section{Goals}
+\begin{frame}
+\begin{itemize}
+	\item Install Python 3.6 or 3.7
+	\item Install Jupyter notebook
+	\item Install Julia 0.6
+	\item Make sure Julia talks to Python and Jupyter
+\end{itemize}
+\end{frame}
+\begin{frame}{Download and Install Python}
+\emph{We will not be using venv or virtual env} 
+\begin{itemize}
+	\item All platforms: Install anaconda
+	\item On windows: \url{https://www.python.org/downloads/windows/} install 3.6.5 or 3.7
+	\item On Mac: Install homebrew \url{https://brew.sh/} then python \texttt{>brew install python} 
+	\item On Linux; use your package manager to install 3.6 or 3.7 ALONG SIDE distribution version
+\end{itemize}
+\end{frame}
+\begin{frame}{Make sure Python is in your PATH}
+Here \texttt{(PYTHON\_DIR)} is the directory where you install python. (For example 
+\texttt{C:\slash Program FIles\slash Python3.7 } or \texttt{/opt/python}
+\vfill
+For windows:\\
+Following \href{https://helpdeskgeek.com/windows-10/add-windows-path-environment-variable/}{this guide}, add your python folder to the PATH variables.
+\vfill
+Otherwise add the following line \texttt{\textasciitilde\slash.bashrc} (linux) or \texttt{\textasciitilde\slash.bash\_profile} (osx):\\
+\vspace{10pt}
+\texttt{set PATH=(PYTHON\_DIR)\slash bin:\$PATH}\\
+\vfill
+\end{frame}
+\begin{frame}{Install Jupyter}
+
+Windows: Using the SAME python interpreter run \texttt{>python -m pip install jupyter}
+\vfill
+On osx: Using homebrew\\
+ \texttt{>brew install jupyter}\\
+\vfill
+(On Ubuntu) Use apt to install\\
+\texttt{>sudo apt install jupyter-notebook}\\
+\vfill
+
+test this by running \texttt{>jupyter-notebook}
+\end{frame}
+\begin{frame}{Install Julia}
+Install Julia 0.6.4 for your operating system from:\\
+\url{https://julialang.org/downloads/oldreleases.html}\\
+\vfill
+
+Make sure to add julia to your PATH variable as you did with python.
+
+\vfill 
+For windows 7 users; make sure to install the additional fixes listed.
+\end{frame}
+\begin{frame}{Install Julia  Binding}
+Install Ijulia with
+\texttt{>Pkg.add("IJulia")}\\
+then exit julia with \texttt{>exit()}
+\vfill
+Test by opening
+\texttt{jupyter-notebook}\\
+and creating a new julia notebook.
+\end{frame}
+
+
+
+
+\end{document}
